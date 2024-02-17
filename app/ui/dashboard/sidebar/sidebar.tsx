@@ -10,6 +10,7 @@ import {
   MdWork,
 } from "react-icons/md";
 import MenuLink from "./menuLink/menuLink";
+import Image from "next/image";
 
 const menuItems = [
   {
@@ -76,8 +77,21 @@ const menuItems = [
 
 const Sidebar = () => {
   return (
-    <div className="container sticky top-40">
-      <ul className="list-none">
+    <div className="container sticky top-10 p-2">
+      <div className="flex items-center gap-10 mb-10">
+        <Image
+          src="/avatar.svg"
+          alt="Imagem Do Usuario"
+          width="50"
+          height="50"
+          className="rounded-full object-cover"
+        />
+        <div className="flex flex-col">
+          <span className="font-semibold">Lucas Fiduniv</span>
+          <span className="text-xs text-gray-500">Administrator</span>
+        </div>
+      </div>
+      <ul className="list-none ">
         {menuItems.map((cat) => (
           <li key={cat.title}>
             <span className="font-bold text-gray-500 text-sm mb-4">
