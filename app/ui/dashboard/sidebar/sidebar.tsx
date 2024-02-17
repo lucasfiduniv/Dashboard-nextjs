@@ -3,6 +3,7 @@ import {
   MdAttachMoney,
   MdDashboard,
   MdHelpCenter,
+  MdLogout,
   MdOutlineSettings,
   MdPeople,
   MdShoppingBag,
@@ -103,6 +104,10 @@ const Sidebar = () => {
           </li>
         ))}
       </ul>
+      <button className="px-4 py-3 flex items-center gap-2 my-2 rounded-md  cursor-pointer  bg-transparent border-none hover:bg-gray-600 text-white w-full">
+        <MdLogout />
+        Sair
+      </button>
     </div>
   );
 };
