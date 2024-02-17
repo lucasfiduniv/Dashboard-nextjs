@@ -9,6 +9,8 @@ import {
   MdSupervisedUserCircle,
   MdWork,
 } from "react-icons/md";
+import MenuLink from "./menuLink/menuLink";
+
 const menuItems = [
   {
     title: "Pages",
@@ -71,12 +73,20 @@ const menuItems = [
     ],
   },
 ];
+
 const Sidebar = () => {
   return (
     <div className="container sticky top-40">
-      <ul>
+      <ul className="list-none">
         {menuItems.map((cat) => (
-          <li key={cat.title}>{cat.title}</li>
+          <li key={cat.title}>
+            <span className="font-bold text-gray-500 text-sm mb-4">
+              {cat.title}
+            </span>
+            {cat.list.map((item) => (
+              <MenuLink item={item} key={item.title} />
+            ))}
+          </li>
         ))}
       </ul>
     </div>
