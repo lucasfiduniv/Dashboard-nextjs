@@ -1,4 +1,4 @@
 const Sidebar = () => {
-  return <div></div>;
+  return <div className="font-xl">Sidebar</div>;
 };
 export default Sidebar;
