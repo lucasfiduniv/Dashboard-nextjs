@@ -1,10 +1,12 @@
-import Layout from "./dashboard/layout";
-import DashboardPage from "./dashboard/page";
+"use client";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  return (
-    <Layout>
-      <DashboardPage />
-    </Layout>
-  );
+  const router = useRouter();
+  useEffect(() => {
+    router.push("/dashboard");
+  }, []);
+
+  return <div>teste</div>;
 }

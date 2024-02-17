@@ -2,6 +2,7 @@ import React from "react";
 import { LayoutProps } from "../interfaces/layoutIntefaces";
 import Navbar from "../ui/dashboard/navbar/navbar";
 import Sidebar from "../ui/dashboard/sidebar/sidebar";
+import Footer from "../ui/dashboard/footer/footer";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
@@ -12,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div className="flex-1 p-4">
         <Navbar />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </div>
   );
