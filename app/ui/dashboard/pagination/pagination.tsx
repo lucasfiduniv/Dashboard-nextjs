@@ -22,16 +22,20 @@ const Pagination = ({ count }: any) => {
   };
 
   return (
-    <div className="p-10 flex justify-between">
+    <div className="flex justify-between">
       <button
-        className="px-4 py-2 cursor-pointer"
+        className={`px-4 py-2 text-white bg-gray-600 rounded-lg cursor-pointer ${
+          hasPrev ? "hover:bg-gray-700" : "opacity-50 cursor-not-allowed"
+        }`}
         disabled={!hasPrev}
         onClick={() => handleChangePage("prev")}
       >
         Anterior
       </button>
       <button
-        className="px-4 py-2 cursor-pointer"
+        className={`px-4 py-2 text-white bg-gray-600 rounded-lg cursor-pointer ${
+          hasNext ? "hover:bg-gray-700" : "opacity-50 cursor-not-allowed"
+        }`}
         disabled={!hasNext}
         onClick={() => handleChangePage("next")}
       >
