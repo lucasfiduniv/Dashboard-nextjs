@@ -1,3 +1,4 @@
+"use client";
 // import { deleteUser } from "@/app/lib/actions";
 // import { fetchUsers } from "@/app/lib/data";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
@@ -47,12 +48,12 @@ const UsersPage = async ({ searchParams }: UsersPageProps) => {
       <div className="flex items-center justify-between mb-4">
         <Search placeholder="Buscar por um usuário..." />
         <Link href="/dashboard/users/add">
-          <button className="addButton px-4 py-2 bg-blue-600 text-white rounded-md">
+          <button className=" px-4 py-2 bg-blue-600 text-white rounded-md">
             Adicionar Novo
           </button>
         </Link>
       </div>
-      <table className="table w-full">
+      <table className=" w-full">
         <thead>
           <tr>
             <td>Nome</td>
@@ -66,7 +67,7 @@ const UsersPage = async ({ searchParams }: UsersPageProps) => {
         <tbody>
           {users.map((user) => (
             <tr key={user.id}>
-              <td>
+              <td className="p-4">
                 <div className="user flex items-center gap-3">
                   {user.img ? (
                     <Image
@@ -74,15 +75,15 @@ const UsersPage = async ({ searchParams }: UsersPageProps) => {
                       alt=""
                       width={40}
                       height={40}
-                      className="userImage rounded-full"
+                      className=" rounded-full"
                     />
                   ) : (
                     <Image
-                      src="/noavatar.png"
+                      src="/avatar.svg"
                       alt=""
                       width={40}
                       height={40}
-                      className="userImage rounded-full"
+                      className=" rounded-full"
                     />
                   )}
                   {user.username}
@@ -91,11 +92,19 @@ const UsersPage = async ({ searchParams }: UsersPageProps) => {
               <td>{user.email}</td>
               <td>{user.createdAt?.toString().slice(4, 16)}</td>
               <td>{user.isAdmin ? "Administrador" : "Cliente"}</td>
-              <td>{user.isActive ? "ativo" : "inativo"}</td>
+              <td>
+                <div
+                  className={`${
+                    user.isActive ? "bg-green-500" : "bg-red-500"
+                  } text-white p-2 rounded-md mr-12`}
+                >
+                  {user.isActive ? "ativo" : "inativo"}
+                </div>
+              </td>
               <td>
                 <div className="buttons flex gap-4">
                   <Link href={`/dashboard/users/${user.id}`}>
-                    <button className="button view px-4 py-2 bg-teal-500 text-white rounded-md">
+                    <button className="button view px-4 py-2 bg-teal-500 hover:bg-teal-700 text-white rounded-md">
                       Ver
                     </button>
                   </Link>
