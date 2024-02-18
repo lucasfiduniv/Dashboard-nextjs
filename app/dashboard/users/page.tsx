@@ -1,5 +1,5 @@
-import { deleteUser } from "@/app/lib/actions";
-import { fetchUsers } from "@/app/lib/data";
+// import { deleteUser } from "@/app/lib/actions";
+// import { fetchUsers } from "@/app/lib/data";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import Search from "@/app/ui/dashboard/search/search";
 import Image from "next/image";
@@ -26,10 +26,17 @@ const usersData = [
   },
 ];
 
-const UsersPage = async ({ searchParams }) => {
+interface UsersPageProps {
+  searchParams: {
+    q: string;
+    page: number;
+  };
+}
+interface UsersPageProps {}
+const UsersPage = async ({ searchParams }: UsersPageProps) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
-  const { count } = usersData;
+
   const ITEMS_PER_PAGE = 10;
   const startIndex = (page - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
@@ -104,7 +111,7 @@ const UsersPage = async ({ searchParams }) => {
           ))}
         </tbody>
       </table>
-      <Pagination count={count} />
+      <Pagination count={1} />
     </div>
   );
 };
