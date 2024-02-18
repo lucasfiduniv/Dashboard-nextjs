@@ -20,7 +20,7 @@ const Navbar = () => {
           <MdSearch className="text-white" />
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Pesquisar..."
             className="bg-transparent border-none focus:outline-none text-gray-200"
           />
         </div>
