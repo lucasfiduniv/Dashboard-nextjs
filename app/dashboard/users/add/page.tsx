@@ -1,7 +1,7 @@
 const AddUserPage = () => {
   return (
     <div className="bg-gray-900 p-6 rounded-lg mt-20">
-      <p className="p-2 text-xl font-semibold">Cadastrar Cliente</p>
+      <p className="p-2 text-xl font-semibold text-white">Cadastrar Cliente</p>
       <form className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
         <input
           type="text"
@@ -58,7 +58,7 @@ const AddUserPage = () => {
         <div>
           <button
             type="submit"
-            className="w-full py-3 p-10 bg-teal-500 text-white rounded-lg focus:outline-none hover:bg-teal-600 transition duration-300"
+            className="w-full py-3 bg-teal-500 text-white rounded-lg focus:outline-none hover:bg-teal-600 transition duration-300"
           >
             Cadastrar
           </button>
