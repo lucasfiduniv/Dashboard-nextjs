@@ -11,24 +11,25 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="p-4 rounded-lg bg-[#182237] flex items-center justify-between">
-      <div className="font-bold text-white capitalize">
-        {pathname.split("/").pop()}
-      </div>
-      <div className="flex items-center gap-20">
-        <div className="flex items-center bg-[#283450] rounded-lg px-4 py-2">
-          <MdSearch className="text-white" />
+    <div className="p-4 rounded-lg bg-[#182237] flex flex-col md:flex-row items-start justify-between">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-start md:justify-between w-full md:w-auto">
+        <div className="font-bold text-white capitalize mb-4 md:mb-0 md:mr-4">
+          {pathname.split("/").pop()}
+        </div>
+
+        <div className="flex items-center bg-[#283450] rounded-lg px-4 py-2 mb-4 md:mb-0 md:mr-20">
+          <MdSearch className="text-white mr-2 md:mr-4" />
           <input
             type="text"
             placeholder="Pesquisar..."
             className="bg-transparent border-none focus:outline-none text-gray-200"
           />
         </div>
-        <div className="flex gap-10 mr-10">
-          <MdOutlineChat size={20} className="text-white" />
-          <MdNotifications size={20} className="text-white" />
-          <MdPublic size={20} className="text-white" />
-        </div>
+      </div>
+      <div className="flex md:gap-10">
+        <MdOutlineChat size={20} className="text-white mr-2" />
+        <MdNotifications size={20} className="text-white mr-2" />
+        <MdPublic size={20} className="text-white" />
       </div>
     </div>
   );
