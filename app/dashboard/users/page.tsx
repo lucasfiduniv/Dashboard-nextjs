@@ -24,6 +24,15 @@ const usersData = [
     isActive: false,
     img: null,
   },
+  {
+    id: 3,
+    username: "Usuário 3",
+    email: "usuario2@example.com",
+    createdAt: new Date(),
+    isAdmin: true,
+    isActive: false,
+    img: null,
+  },
 ];
 
 interface UsersPageProps {
@@ -36,12 +45,14 @@ interface UsersPageProps {}
 const UsersPage = async ({ searchParams }: UsersPageProps) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
-
-  const ITEMS_PER_PAGE = 10;
+  const count = usersData.length;
+  const ITEMS_PER_PAGE = 2;
   const startIndex = (page - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const users = usersData.slice(startIndex, endIndex);
-
+  const products = usersData.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(count / ITEMS_PER_PAGE);
+  const showPagination = totalPages > 1 && page < totalPages;
   return (
     <div className="bg-[#182237] p-6 rounded-lg mt-6">
       <div className="mb-4">

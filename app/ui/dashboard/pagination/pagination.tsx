@@ -1,24 +1,26 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 
 const Pagination = ({ count }: any) => {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const pathname = usePathname();
+  const [page, setPage] = useState(1);
 
-  const page = parseInt(searchParams.get("page") || "1");
+  useEffect(() => {
+    const currentPage = parseInt(searchParams.get("page") || "1");
+    setPage(currentPage);
+  }, [searchParams]);
 
-  const params = new URLSearchParams(searchParams);
-  const ITEM_PER_PAGE = 2;
+  const ITEM_PER_PAGE = 1;
 
-  const hasPrev = ITEM_PER_PAGE * (page - 1) > 0;
-  const hasNext = ITEM_PER_PAGE * (page - 1) + ITEM_PER_PAGE < count;
+  const hasPrev = page > 1;
+  const hasNext = page * ITEM_PER_PAGE < count;
 
   const handleChangePage = (type: string) => {
-    type === "prev"
-      ? params.set("page", (page - 1).toString())
-      : params.set("page", (page + 1).toString());
-    replace(`${pathname}?${params}`);
+    const nextPage = type === "prev" ? page - 1 : page + 1;
+    replace(`${pathname}?page=${nextPage}`);
   };
 
   return (
