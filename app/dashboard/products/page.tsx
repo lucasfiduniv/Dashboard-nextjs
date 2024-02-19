@@ -48,7 +48,7 @@ const ProductsPage = async ({
       <div className="flex items-center justify-between mb-4">
         <Search placeholder="Buscar Por Produto..." />
         <Link href="/dashboard/products/add">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-md">
+          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-800 text-white rounded-md">
             Novo Produto
           </button>
         </Link>
