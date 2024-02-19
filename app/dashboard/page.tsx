@@ -5,18 +5,26 @@ import Transactions from "../ui/dashboard/transactions/transactions";
 
 const DashboardPage = () => {
   return (
-    <div className="flex gap-20 flex-col md:flex-row md:gap-20 md:mt-20">
-      <div className="flex-3 flex flex-col gap-20">
-        <div className="flex gap-20 justify-between">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+    <div className="flex flex-col md:flex-row md:mt-20">
+      <div className="md:flex-3 flex flex-col md:gap-20 md:px-10">
+        <div className="md:gap-20 justify-between md:flex-row md:flex">
+          <div className="mb-10 md:mb-0">
+            <Card />
+          </div>
+          <div className="mb-10 md:mb-0">
+            <Card />
+          </div>
+          <div className="mb-10 md:mb-0">
+            <Card />
+          </div>
+          <div className="mb-10 md:mb-0">
+            <Card />
+          </div>
         </div>
         <Transactions />
         <Chart />
       </div>
-      <div className="flex-1">
+      <div className="md:flex-1">
         <Rightbar />
       </div>
     </div>
