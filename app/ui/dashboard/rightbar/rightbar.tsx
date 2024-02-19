@@ -3,7 +3,7 @@ import { MdPlayCircleFilled, MdReadMore } from "react-icons/md";
 
 const Rightbar = () => {
   return (
-    <div className="fixed">
+    <div className="">
       <div className="bg-gradient-to-t from-gray-900 to-[#182237] p-6 rounded-lg mb-6 relative">
         <div className="absolute right-0 bottom-0 w-1/2 h-1/2">
           <Image

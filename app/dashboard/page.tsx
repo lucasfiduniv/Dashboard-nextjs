@@ -24,7 +24,7 @@ const DashboardPage = () => {
         <Transactions />
         <Chart />
       </div>
-      <div className="flex-1">
+      <div className="md:w-1/4">
         <Rightbar />
       </div>
     </div>
