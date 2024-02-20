@@ -1,5 +1,4 @@
 "use client";
-// components/UserListComponent.tsx
 import React, { useEffect, useState } from "react";
 import { fetchUsers } from "../api/getUser";
 
