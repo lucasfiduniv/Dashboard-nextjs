@@ -1,19 +1,11 @@
-import { PrismaClient, User } from '@prisma/client';
 
-const prisma = new PrismaClient();
-
-async function main(): Promise<void> {
+export const fetchUsers = async () => {
     try {
-        const allUsers: User[] = await prisma.user.findMany();
-        console.log(allUsers);
+        const response = await fetch("http://localhost:3001/users");
+        const data = await response.json();
+        return data;
     } catch (error) {
+        console.error("Error fetching users:", error);
         throw error;
-    } finally {
-        await prisma.$disconnect();
     }
-}
-
-main().catch(error => {
-    console.error(error);
-    process.exit(1);
-});
+};

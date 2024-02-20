@@ -1,22 +1,22 @@
 "use client";
 // components/UserListComponent.tsx
 import React, { useEffect, useState } from "react";
+import { fetchUsers } from "../api/getUser";
 
 const UserListComponent: React.FC = () => {
   const [users, setUsers] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/users");
-        const data = await response.json();
+        const data = await fetchUsers();
         setUsers(data);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
     };
 
-    fetchUsers();
+    fetchData();
   }, []);
 
   return (
