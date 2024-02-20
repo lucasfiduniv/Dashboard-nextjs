@@ -1,5 +1,7 @@
+import { FormHTMLAttributes } from "react";
+
 const Login = () => {
-  const handleLogin = async (event) => {
+  const handleLogin = async (event: FormHTMLAttributes<HTMLFormElement>) => {
     "use server";
     console.log("Usuário fez login!");
   };
