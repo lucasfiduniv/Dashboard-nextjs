@@ -1,4 +1,9 @@
 const Login = () => {
+  const handleLogin = async (event) => {
+    "use server";
+    console.log("Usuário fez login!");
+  };
+
   return (
     <section className="bg-[#182237]">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -13,12 +18,12 @@ const Login = () => {
           />
           Dashboard
         </a>
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-[#151c2c] dark:border-gray-700">
+        <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-[#151c2c] dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Logar em Sua Conta
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form className="space-y-4 md:space-y-6" action={handleLogin}>
               <div>
                 <label
                   htmlFor="email"
