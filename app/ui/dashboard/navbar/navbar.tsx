@@ -14,6 +14,8 @@ const Navbar = () => {
       return "Usuários";
     } else if (pathname.includes("products")) {
       return "Produtos";
+    } else if (pathname.includes("transactions")) {
+      return "Transações";
     } else {
       return pathname.split("/").pop();
     }
