@@ -1,8 +1,18 @@
 "use client";
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
+
+interface FormData {
+  title: string;
+  cat: string;
+  price: string;
+  stock: string;
+  color: string;
+  size: string;
+  desc: string;
+}
 
 const AddProductPage = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     title: "",
     cat: "general",
     price: "",
@@ -12,7 +22,9 @@ const AddProductPage = () => {
     desc: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -20,7 +32,7 @@ const AddProductPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
   };
@@ -92,7 +104,7 @@ const AddProductPage = () => {
           required
           name="desc"
           id="desc"
-          rows="6"
+          rows={6}
           placeholder="Descrição"
           value={formData.desc}
           onChange={handleChange}
