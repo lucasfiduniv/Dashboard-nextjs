@@ -43,13 +43,12 @@ const TransactionsPage = ({ searchParams }) => {
   const [filterType, setFilterType] = useState("all");
   const [filterCategory, setFilterCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 2;
+  const itemsPerPage = 1;
   const count = transactionsData.length;
   const totalPages = Math.ceil(count / itemsPerPage);
   const page = searchParams?.page || 1;
   const showPagination = totalPages > 1 && page < totalPages;
 
-  // Processo de filtragem das transações
   const filteredTransactions = transactionsData.filter((transaction) => {
     const searchTermMatches =
       transaction.description
@@ -65,7 +64,6 @@ const TransactionsPage = ({ searchParams }) => {
     return searchTermMatches && typeMatches && categoryMatches;
   });
 
-  // Cálculo da página atual de transações
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentTransactions = filteredTransactions.slice(
@@ -73,7 +71,6 @@ const TransactionsPage = ({ searchParams }) => {
     indexOfLastItem
   );
 
-  // Função para mudar de página
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   return (

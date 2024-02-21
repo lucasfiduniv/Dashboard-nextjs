@@ -1,5 +1,5 @@
-// import { deleteUser } from "@/app/lib/actions";
-// import { fetchUsers } from "@/app/lib/data";
+"use client";
+import { useState } from "react";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import Search from "@/app/ui/dashboard/search/search";
 import Image from "next/image";
@@ -35,30 +35,37 @@ const usersData = [
   },
 ];
 
-interface UsersPageProps {
-  searchParams: {
-    q: string;
-    page: number;
-  };
-}
-interface UsersPageProps {}
-const UsersPage = async ({ searchParams }: UsersPageProps) => {
-  const q = searchParams?.q || "";
-  const page = searchParams?.page || 1;
+const UsersPage = ({ searchParams }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 1;
   const count = usersData.length;
-  const ITEMS_PER_PAGE = 1;
-  const startIndex = (page - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  const users = usersData.slice(startIndex, endIndex);
-  const products = usersData.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(count / ITEMS_PER_PAGE);
-  const showPagination = totalPages > 1 && page < totalPages;
+  const totalPages = Math.ceil(count / itemsPerPage);
+  const page = searchParams?.page || 1;
+
+  const filteredUsers = usersData.filter((user) => {
+    const searchTermMatches =
+      user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase());
+
+    return searchTermMatches;
+  });
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentUsers = filteredUsers.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="bg-[#182237] p-6 rounded-lg mt-6">
       <div className="mb-4">
-        <Search placeholder="Buscar por um usuário..." />
+        <Search
+          placeholder="Buscar por um usuário..."
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
       </div>
-      {users.map((user) => (
+      {currentUsers.map((user) => (
         <div
           key={user.id}
           className="mb-6 bg-[#182237] p-4 rounded-md hover:shadow-[3px_3px_0px_0px_rgba(0,59,255)] shadow shadow-blue-800"
@@ -122,7 +129,12 @@ const UsersPage = async ({ searchParams }: UsersPageProps) => {
           </div>
         </div>
       ))}
-      <Pagination count={1} />
+
+      <Pagination
+        count={totalPages}
+        currentPage={page}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };
