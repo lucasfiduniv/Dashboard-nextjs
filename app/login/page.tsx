@@ -1,9 +1,22 @@
-import { FormHTMLAttributes } from "react";
+"use client";
+import { useRouter } from "next/navigation";
+import React from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const handleLogin = async (event: FormHTMLAttributes<HTMLFormElement>) => {
-    "use server";
-    console.log("Usuário fez login!");
+  const router = useRouter();
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    if (email === "admin@admin.com" && password === "admin") {
+      toast.success("Usuário fez login como administrador!");
+      router.push("/dashboard");
+    } else {
+      toast("Usuário fez login como usuário normal.");
+    }
   };
 
   return (
@@ -25,7 +38,7 @@ const Login = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Logar em Sua Conta
             </h1>
-            <form className="space-y-4 md:space-y-6" action={handleLogin}>
+            <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
               <div>
                 <label
                   htmlFor="email"
@@ -66,7 +79,6 @@ const Login = () => {
                       aria-describedby="remember"
                       type="checkbox"
                       className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                      required={true}
                     />
                   </div>
                   <div className="ml-3 text-sm">
