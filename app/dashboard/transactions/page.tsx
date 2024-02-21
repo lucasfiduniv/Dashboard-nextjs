@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import Search from "@/app/ui/dashboard/search/search";
+import Link from "next/link";
 
 const transactionsData = [
   {
@@ -75,11 +76,17 @@ const TransactionsPage = ({ searchParams }) => {
 
   return (
     <div className="bg-[#182237] p-4 md:p-6 rounded-lg mt-6">
-      <div className="mb-4">
+      <div className="mb-4 flex justify-between items-center">
         <Search
           placeholder="Buscar por uma transação..."
           onChange={(e) => setSearchTerm(e.target.value)}
+          className="mr-2"
         />
+        <Link href="users/add">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Adicionar Transação
+          </button>
+        </Link>
       </div>
       <div className="mb-4 flex flex-col md:flex-row justify-between items-center">
         <div className="mb-2 md:mb-0 w-full md:w-auto">

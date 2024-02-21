@@ -42,6 +42,7 @@ const UsersPage = ({ searchParams }) => {
   const count = usersData.length;
   const totalPages = Math.ceil(count / itemsPerPage);
   const page = searchParams?.page || 1;
+  const showPagination = totalPages > 1 && page < totalPages;
 
   const filteredUsers = usersData.filter((user) => {
     const searchTermMatches =
@@ -54,16 +55,21 @@ const UsersPage = ({ searchParams }) => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentUsers = filteredUsers.slice(indexOfFirstItem, indexOfLastItem);
-
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="bg-[#182237] p-6 rounded-lg mt-6">
-      <div className="mb-4">
+      <div className="mb-4 flex justify-between items-center">
         <Search
           placeholder="Buscar por um usuário..."
           onChange={(e) => setSearchTerm(e.target.value)}
+          className="mr-2"
         />
+        <Link href="users/add">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Adicionar Usuário
+          </button>
+        </Link>
       </div>
       {currentUsers.map((user) => (
         <div

@@ -56,8 +56,13 @@ const ProductsPage = async ({
 
   return (
     <div className="bg-[#182237] p-6 rounded-lg mt-6">
-      <div className="mb-4">
-        <Search placeholder="Buscar Por Produto..." />
+      <div className="mb-4 flex justify-between items-center">
+        <Search placeholder="Buscar por um produto..." />
+        <Link href="products/add">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Adicionar Usuário
+          </button>
+        </Link>
       </div>
       {products.map((product) => (
         <div
