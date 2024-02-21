@@ -1,12 +1,20 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import LoadingSpinner from "./ui/loadingSpinner";
 
 export default function Home() {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    router.push("/dashboard");
+    setLoading(false);
+    router.push("/login");
   }, []);
 
-  return <div>teste</div>;
+  if (loading) {
+    return <LoadingSpinner type="page" />;
+  }
+
+  return <div></div>;
 }

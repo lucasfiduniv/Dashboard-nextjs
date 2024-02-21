@@ -6,10 +6,12 @@ import Sidebar from "../ui/dashboard/sidebar/sidebar";
 import Footer from "../ui/dashboard/footer/footer";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useMediaQuery } from "react-responsive";
+import LoadingSpinner from "../ui/loadingSpinner";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isDesktop, setIsDesktop] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkScreenWidth = () => {
@@ -30,32 +32,42 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     }
   }, [isDesktop]);
 
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
   return (
-    <div className="flex">
-      <div
-        className={`bg-[#182237] p-4 min-h-screen md:w-64 ${
-          sidebarOpen ? "" : "hidden"
-        }`}
-      >
-        <Sidebar />
-      </div>
-      <div className="flex-1 p-4">
-        <Navbar />
-        {!isDesktop && (
-          <button className="md:hidden" onClick={toggleSidebar}>
-            <div className="bg-white rounded-full text-[#182237] p-2 absolute flex">
-              {sidebarOpen ? <FaArrowLeft /> : <FaArrowRight />}
-            </div>
-          </button>
-        )}
-        {children}
-        <Footer />
-      </div>
-    </div>
+    <>
+      {loading ? (
+        <LoadingSpinner type="page" />
+      ) : (
+        <div className="flex">
+          <div
+            className={`bg-[#182237] p-4 min-h-screen md:w-64 ${
+              sidebarOpen ? "" : "hidden"
+            }`}
+          >
+            <Sidebar />
+          </div>
+          <div className="flex-1 p-4">
+            <Navbar />
+            {!isDesktop && (
+              <button className="md:hidden" onClick={toggleSidebar}>
+                <div className="bg-white rounded-full text-[#182237] p-2 absolute flex">
+                  {sidebarOpen ? <FaArrowLeft /> : <FaArrowRight />}
+                </div>
+              </button>
+            )}
+            {children}
+            <Footer />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

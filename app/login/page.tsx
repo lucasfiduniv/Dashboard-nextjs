@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 
 const Login = () => {
@@ -12,13 +12,22 @@ const Login = () => {
     const password = formData.get("password");
 
     if (email === "admin@admin.com" && password === "admin") {
-      toast.success("Usuário fez login como administrador!");
+      toast.success("Usuário fez login como administrador!", {
+        duration: 6000,
+      });
       router.push("/dashboard");
     } else {
       toast("Usuário fez login como usuário normal.");
     }
   };
-
+  useEffect(() => {
+    toast(
+      "Para Fazer login nessa pagina de exemplo use email:admin@admin.com e senha:admin",
+      {
+        duration: 1000000,
+      }
+    );
+  });
   return (
     <section className="bg-[#182237]">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
