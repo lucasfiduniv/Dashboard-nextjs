@@ -1,12 +1,26 @@
 "use client";
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
 
-const SingleUserPage = ({ params }) => {
+interface User {
+  id?: number;
+  username?: string;
+  email?: string;
+  phone?: string;
+  img?: string;
+}
+
+interface SingleUserPageProps {
+  params: {
+    id: number;
+  };
+}
+
+const SingleUserPage = ({ params }: SingleUserPageProps) => {
   const { id } = params;
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<User>({});
 
-  const handleUpdateUser = (e) => {
+  const handleUpdateUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Dados do usuário atualizados:", user);
   };
@@ -14,11 +28,11 @@ const SingleUserPage = ({ params }) => {
   return (
     <div className="flex gap-10 mt-20">
       <div className="w-1/5 bg-gray-800 p-8 rounded-lg">
-        <div className="relative  mb-4 rounded-full overflow-hidden">
+        <div className="relative mb-4 rounded-full overflow-hidden">
           <Image
             src={user.img || "/avatar.svg"}
             alt=""
-            layout="full"
+            layout="responsive"
             objectFit="cover"
             width={220}
             height={200}
@@ -41,34 +55,32 @@ const SingleUserPage = ({ params }) => {
             type="text"
             id="username"
             name="username"
-            placeholder={user.username}
+            placeholder={user.username || ""}
             className="bg-gray-700 rounded-md px-4 py-2 text-white"
             onChange={(e) => setUser({ ...user, username: e.target.value })}
           />
-          <label htmlFor="username" className="text-sm text-white">
+          <label htmlFor="email" className="text-sm text-white">
             Email
           </label>
           <input
             type="text"
-            id="username"
-            name="username"
-            placeholder={user.username}
+            id="email"
+            name="email"
+            placeholder={user.email || ""}
             className="bg-gray-700 rounded-md px-4 py-2 text-white"
-            onChange={(e) => setUser({ ...user, username: e.target.value })}
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
           />
-
-          <label htmlFor="username" className="text-sm text-white">
+          <label htmlFor="phone" className="text-sm text-white">
             Telefone
           </label>
           <input
             type="text"
-            id="username"
-            name="username"
-            placeholder={user.username}
+            id="phone"
+            name="phone"
+            placeholder={user.phone || ""}
             className="bg-gray-700 rounded-md px-4 py-2 text-white"
-            onChange={(e) => setUser({ ...user, username: e.target.value })}
+            onChange={(e) => setUser({ ...user, phone: e.target.value })}
           />
-
           <button
             type="submit"
             className="bg-blue-500 rounded-md px-4 py-2 text-white mt-4 hover:bg-blue-600"
