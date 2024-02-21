@@ -22,15 +22,16 @@ const Login = () => {
   };
   useEffect(() => {
     toast(
-      "Para Fazer login nessa pagina de exemplo use email:admin@admin.com e senha:admin",
+      (t) =>
+        "Para Fazer login nessa pagina de exemplo use email:admin@admin.com e senha:admin",
       {
-        duration: 1000000,
+        duration: 10000,
       }
     );
-  });
+  }, []);
   return (
     <section className="bg-[#182237]">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div className="mt-32 flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:mt-0 lg:py-0">
         <a
           href="#"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
