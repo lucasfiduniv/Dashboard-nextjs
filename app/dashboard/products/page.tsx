@@ -30,8 +30,8 @@ const productsData = [
   },
   {
     id: 3,
-    title: "Produto 2",
-    desc: "descricao 2",
+    title: "Produto 3",
+    desc: "descricao 3",
     price: 150,
     createdAt: new Date(),
     stock: 15,
@@ -113,7 +113,7 @@ const ProductsPage = async ({
           </div>
         </div>
       ))}
-      {showPagination && <Pagination count={totalPages} />}
+      <Pagination count={totalPages} />
     </div>
   );
 };

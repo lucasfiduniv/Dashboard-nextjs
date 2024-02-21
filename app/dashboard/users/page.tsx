@@ -46,7 +46,7 @@ const UsersPage = async ({ searchParams }: UsersPageProps) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
   const count = usersData.length;
-  const ITEMS_PER_PAGE = 2;
+  const ITEMS_PER_PAGE = 1;
   const startIndex = (page - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const users = usersData.slice(startIndex, endIndex);
