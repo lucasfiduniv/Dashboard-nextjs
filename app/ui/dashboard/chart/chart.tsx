@@ -1,6 +1,5 @@
 "use client";
-
-import styles from "./chart.module.css";
+import { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -10,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import styles from "./chart.module.css";
 
 const data = [
   {
@@ -50,14 +50,31 @@ const data = [
 ];
 
 const Chart = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate loading delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Gráfico da Semana</h2>
+    <div className={`${styles.container} ${isLoading ? "animate-pulse" : ""}`}>
+      <h2
+        className={`${styles.title} ${
+          isLoading ? "bg-gray-700 h-6 w-36 rounded" : ""
+        }`}
+      >
+        Gráfico da Semana
+      </h2>
       <ResponsiveContainer width="100%" height="90%">
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={isLoading ? [] : data}
           margin={{
             top: 5,
             right: 30,
