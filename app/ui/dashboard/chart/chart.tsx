@@ -52,13 +52,8 @@ const data = [
 const Chart = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simulate loading delay
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
+    setIsLoading(false);
   }, []);
 
   return (
