@@ -1,16 +1,13 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { MdSupervisedUserCircle } from "react-icons/md";
 
 const Card = () => {
   const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  useEffect(() => {
+    setIsLoading(false); // Set loading state to false immediately on component mount
+  }, []); // Empty dependency array to ensure this effect runs only once, on component mount
 
   return (
     <div

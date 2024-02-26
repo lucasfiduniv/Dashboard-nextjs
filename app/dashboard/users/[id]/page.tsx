@@ -1,5 +1,4 @@
-"use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 interface User {
@@ -19,6 +18,16 @@ interface SingleUserPageProps {
 const SingleUserPage = ({ params }: SingleUserPageProps) => {
   const { id } = params;
   const [user, setUser] = useState<User>({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate loading delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleUpdateUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,23 +35,38 @@ const SingleUserPage = ({ params }: SingleUserPageProps) => {
   };
 
   return (
-    <div className="flex gap-10 mt-20">
+    <div className={`flex gap-10 mt-20 ${isLoading ? "animate-pulse" : ""}`}>
       <div className="w-1/5 bg-gray-800 p-8 rounded-lg">
         <div className="relative mb-4 rounded-full overflow-hidden">
-          <Image
-            src={user.img || "/avatar.svg"}
-            alt=""
-            layout="responsive"
-            objectFit="cover"
-            width={220}
-            height={200}
-          />
+          {isLoading ? (
+            // Placeholder for loading state
+            <div className="bg-gray-700 rounded-full h-40 w-40"></div>
+          ) : (
+            <Image
+              src={user.img || "/avatar.svg"}
+              alt=""
+              layout="responsive"
+              objectFit="cover"
+              width={220}
+              height={200}
+            />
+          )}
         </div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <button
+          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${
+            isLoading ? "hidden" : ""
+          }`}
+        >
           Atualizar
         </button>
         <input type="file" accept="image/*" style={{ display: "none" }} />
-        <p className="font-bold text-white">{user.username}</p>
+        <p
+          className={`font-bold text-white ${
+            isLoading ? "bg-gray-700 h-4 w-36 rounded" : ""
+          }`}
+        >
+          {isLoading ? "" : user.username}
+        </p>
       </div>
       <div className="w-4/5 bg-gray-800 p-8 rounded-lg">
         <p className="mb-10 font-extrabold text-xl">Informações do Usuario</p>
@@ -55,8 +79,10 @@ const SingleUserPage = ({ params }: SingleUserPageProps) => {
             type="text"
             id="username"
             name="username"
-            placeholder={user.username || ""}
-            className="bg-gray-700 rounded-md px-4 py-2 text-white"
+            placeholder={isLoading ? "" : user.username || ""}
+            className={`bg-gray-700 rounded-md px-4 py-2 text-white ${
+              isLoading ? "h-8 w-80 rounded" : ""
+            }`}
             onChange={(e) => setUser({ ...user, username: e.target.value })}
           />
           <label htmlFor="email" className="text-sm text-white">
@@ -66,8 +92,10 @@ const SingleUserPage = ({ params }: SingleUserPageProps) => {
             type="text"
             id="email"
             name="email"
-            placeholder={user.email || ""}
-            className="bg-gray-700 rounded-md px-4 py-2 text-white"
+            placeholder={isLoading ? "" : user.email || ""}
+            className={`bg-gray-700 rounded-md px-4 py-2 text-white ${
+              isLoading ? "h-8 w-80 rounded" : ""
+            }`}
             onChange={(e) => setUser({ ...user, email: e.target.value })}
           />
           <label htmlFor="phone" className="text-sm text-white">
@@ -77,13 +105,17 @@ const SingleUserPage = ({ params }: SingleUserPageProps) => {
             type="text"
             id="phone"
             name="phone"
-            placeholder={user.phone || ""}
-            className="bg-gray-700 rounded-md px-4 py-2 text-white"
+            placeholder={isLoading ? "" : user.phone || ""}
+            className={`bg-gray-700 rounded-md px-4 py-2 text-white ${
+              isLoading ? "h-8 w-80 rounded" : ""
+            }`}
             onChange={(e) => setUser({ ...user, phone: e.target.value })}
           />
           <button
             type="submit"
-            className="bg-blue-500 rounded-md px-4 py-2 text-white mt-4 hover:bg-blue-600"
+            className={`bg-blue-500 rounded-md px-4 py-2 text-white mt-4 hover:bg-blue-600 ${
+              isLoading ? "hidden" : ""
+            }`}
           >
             Atualizar
           </button>
