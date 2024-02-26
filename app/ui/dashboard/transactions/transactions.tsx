@@ -5,13 +5,8 @@ import Image from "next/image";
 const Transactions = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simulate loading delay
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
+    setIsLoading(false);
   }, []);
 
   return (
@@ -29,7 +24,6 @@ const Transactions = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {isLoading ? (
-          // Placeholder for loading state
           <>
             <div className="animate-pulse bg-gray-700 p-4 rounded-md shadow-lg"></div>
             <div className="animate-pulse bg-gray-700 p-4 rounded-md shadow-lg"></div>
