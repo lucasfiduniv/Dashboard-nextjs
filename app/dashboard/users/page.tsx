@@ -1,4 +1,4 @@
-"use client  ";
+"use client";
 import { useState, useEffect } from "react";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import Search from "@/app/ui/dashboard/search/search";
