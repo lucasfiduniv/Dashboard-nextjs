@@ -23,6 +23,7 @@
     "react-responsive": "^9.0.2",
     "react-spinners": "^0.13.8",
     "recharts": "^2.12.0",
+    "sharp": "^0.33.2",
     "use-debounce": "^10.0.0",
     "vercel": "^33.5.1"
   },

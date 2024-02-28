@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Joyride from "react-joyride";
+import Joyride, { Step } from "react-joyride";
 import Card from "../ui/dashboard/card/card";
 import Chart from "../ui/dashboard/chart/chart";
 import Rightbar from "../ui/dashboard/rightbar/rightbar";
@@ -9,7 +9,12 @@ import Transactions from "../ui/dashboard/transactions/transactions";
 const DashboardPage = () => {
   const [runTour, setRunTour] = useState(true); // Iniciar automaticamente o tour
 
-  const steps = [
+  useEffect(() => {
+    // Pausar o tour após a montagem do componente
+    setRunTour(true);
+  }, []);
+
+  const steps: Step[] = [
     {
       target: ".first-card",
       content: "Este é o primeiro cartão.",
