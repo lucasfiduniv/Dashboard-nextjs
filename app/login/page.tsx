@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const router = useRouter();
-  const handleLogin = async (event) => {
+  const handleLogin = async (event: any) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const email = formData.get("email");

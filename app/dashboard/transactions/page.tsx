@@ -39,7 +39,7 @@ const transactionsData = [
   },
 ];
 
-const TransactionsPage = ({ searchParams }) => {
+const TransactionsPage = ({ searchParams }: any) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [filterCategory, setFilterCategory] = useState("all");
@@ -72,14 +72,14 @@ const TransactionsPage = ({ searchParams }) => {
     indexOfLastItem
   );
 
-  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+  const handlePageChange = (pageNumber: any) => setCurrentPage(pageNumber);
 
   return (
     <div className="bg-[#182237] p-4 md:p-6 rounded-lg mt-6">
       <div className="mb-4 flex justify-between items-center">
         <Search
           placeholder="Buscar por uma transação..."
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e: any) => setSearchTerm(e.target.value)}
           className="mr-2"
         />
         <Link href="users/add">

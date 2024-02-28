@@ -35,7 +35,7 @@ const usersData = [
   },
 ];
 
-const UsersPage = ({ searchParams }) => {
+const UsersPage = ({ searchParams }: any) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
@@ -63,7 +63,7 @@ const UsersPage = ({ searchParams }) => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentUsers = filteredUsers.slice(indexOfFirstItem, indexOfLastItem);
-  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+  const handlePageChange = (pageNumber: any) => setCurrentPage(pageNumber);
 
   return (
     <div
@@ -74,7 +74,7 @@ const UsersPage = ({ searchParams }) => {
       <div className="mb-4 flex justify-between items-center">
         <Search
           placeholder="Buscar por um usuário..."
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e: any) => setSearchTerm(e.target.value)}
           className="mr-2"
         />
         <Link href="users/add">

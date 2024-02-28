@@ -30,28 +30,20 @@ const AddUserPage = () => {
           name="phone"
           className="p-4 bg-gray-800 text-gray-100 border-2 border-gray-700 rounded-md focus:outline-none focus:border-blue-500"
         />
+
         <select
           name="isAdmin"
           id="isAdmin"
           className="p-4 bg-gray-800 text-gray-100 border-2 border-gray-700 rounded-md focus:outline-none focus:border-blue-500"
         >
-          <option value={false}>É admin?</option>
-          <option value={true}>Sim</option>
-          <option value={false}>Não</option>
-        </select>
-        <select
-          name="isActive"
-          id="isActive"
-          className="p-4 bg-gray-800 text-gray-100 border-2 border-gray-700 rounded-md focus:outline-none focus:border-blue-500"
-        >
-          <option value={true}>É ativo?</option>
-          <option value={true}>Sim</option>
-          <option value={false}>Não</option>
+          <option value="false">É admin?</option>
+          <option value="true">Sim</option>
+          <option value="false">Não</option>
         </select>
         <textarea
           name="address"
           id="address"
-          rows="6"
+          rows={6}
           placeholder="Endereço"
           className="p-4 bg-gray-800 text-gray-100 border-2 border-gray-700 rounded-md focus:outline-none focus:border-blue-500"
         ></textarea>
